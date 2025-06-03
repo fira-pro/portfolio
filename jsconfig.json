@@ -4,11 +4,7 @@
     "module": "ESNext",
     "target": "ES6",
     "baseUrl": ".",
-    "moduleResolution": "Node",
-    "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "@mui/*": ["node_modules/@mui/*"]
-    }
+    "moduleResolution": "Node"
   },
   "include": ["src"]
 }
