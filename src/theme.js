@@ -1,14 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 
-const black = "#000000";
-const white = "#ffffff";
-const gray900 = "#111111";
-const gray800 = "#1a1a1a";
-const gray700 = "#2e2e2e";
-const gray200 = "#eaeaea";
-// const gray100 = "#f5f5f5";
-const gray50 = "#fafafa";
-
 const theme = createTheme({
   typography: {
     fontFamily: `'Geist', 'Manrope', 'sans-serif'`,
@@ -35,42 +26,42 @@ const theme = createTheme({
       palette: {
         mode: "light",
         primary: {
-          main: black, // used for buttons, icons, etc.
-          contrastText: white,
+          main: "#000000", // black buttons, icons
+          contrastText: "#ffffff",
         },
         secondary: {
-          main: gray800, // optional subtle accent
+          main: "#f0f0f0", // sidebar or subtle sections
         },
         background: {
-          default: white,
-          paper: gray50,
+          default: "#ffffff", // app background
+          paper: "#fafafa", // cards, modals, sidebar
         },
         text: {
-          primary: gray900,
+          primary: "#111111", // dark gray text
           secondary: "#666666",
         },
-        divider: gray200,
+        divider: "#e0e0e0",
       },
     },
     dark: {
       palette: {
         mode: "dark",
         primary: {
-          main: white,
-          contrastText: black,
+          main: "#ffffff", // white buttons, icons
+          contrastText: "#000000",
         },
         secondary: {
-          main: gray200,
+          main: "#2a2a2a", // sidebar or accents
         },
         background: {
-          default: black,
-          paper: gray800,
+          default: "#1a1a1a", // page background
+          paper: "#121212", // card/sidebar/modals
         },
         text: {
-          primary: white,
-          secondary: "#999999",
+          primary: "#ffffff",
+          secondary: "#aaaaaa",
         },
-        divider: gray700,
+        divider: "#2e2e2e",
       },
     },
   },
