@@ -31,9 +31,9 @@ const theme = createTheme({
     },
   },
   colorSchemes: {
-    dark: {
+    light: {
       palette: {
-        mode: "dark",
+        mode: "light",
         primary: {
           main: black, // used for buttons, icons, etc.
           contrastText: white,
@@ -52,9 +52,9 @@ const theme = createTheme({
         divider: gray200,
       },
     },
-    light: {
+    dark: {
       palette: {
-        mode: "light",
+        mode: "dark",
         primary: {
           main: white,
           contrastText: black,
