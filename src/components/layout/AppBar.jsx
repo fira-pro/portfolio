@@ -1,39 +1,43 @@
 import {
-  ChevronLeft,
-  ChevronRight,
   DarkMode,
-  DataSaverOffOutlined,
   EditNote,
   LightMode,
-  NewLabel,
-  NewReleasesRounded,
-  OpenInNew,
-  ViewSidebar,
   ViewSidebarOutlined,
-  ViewSidebarRounded,
-  ViewSidebarSharp,
-  ViewSidebarTwoTone,
 } from "@mui/icons-material";
 import {
   Box,
-  Divider,
-  Drawer,
   IconButton,
   styled,
   Toolbar,
   Typography,
   useColorScheme,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
-import { useState } from "react";
 import MuiAppBar from "@mui/material/AppBar";
+import {
+  drawerWidth,
+  mobileBreakPoint,
+} from "src/constants";
 
-const drawerWidth = 245;
+// const Container = styled("div")({
+//   containerType: "inline-size",
+//   width: "100%",
+// });
 
-const AppBar = styled(MuiAppBar, {
+const ResponsiveBox = styled(Box)({
+  "@container (min-width: 84rem)": {
+    backgroundColor: "transparent",
+    border: "none",
+  },
+});
+
+const StyledAppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
+  // backgroundColor: theme.palette.background.default,
+  // "@container (min-width: 500px)": {
+  //   backgroundColor: "transparent",
+  // },
+  containerType: "inline-size",
   transition: theme.transitions.create(
     ["margin", "width"],
     {
@@ -42,10 +46,13 @@ const AppBar = styled(MuiAppBar, {
     }
   ),
   variants: [
+    // When the drawer is open, calculate the width and margin with drawerWidth
+    // But only when the breakpoint is above mobile break point blow that the
+    // drawer variant is temporary (overlay) which doesn't affect the layout
     {
       props: ({ open }) => open,
       style: {
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up(mobileBreakPoint)]: {
           width: `calc(100% - ${drawerWidth}px)`,
           marginLeft: `${drawerWidth}px`,
           transition: theme.transitions.create(
@@ -62,27 +69,29 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-export default function AppLayout() {
+export default function AppBar({
+  isDrawerOpen,
+  setIsDrawerOpen,
+}) {
   const { mode, setMode } = useColorScheme();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down("md")
-  );
   return (
-    <Box
+    // <Container>
+    <StyledAppBar
+      open={isDrawerOpen}
+      position="fixed"
+      color="transparent"
+      enableColorOnDark
       sx={{
-        display: "flex",
+        boxShadow: "none",
       }}
     >
-      <AppBar
-        open={isDrawerOpen}
-        position="fixed"
-        color="transparent"
-        enableColorOnDark
+      <ResponsiveBox
         sx={{
-          boxShadow: "none",
+          backgroundColor: "background.default",
+          borderBottomColor: "divider",
+          borderBottomStyle: "solid",
+          borderBottomWidth: "0.8px",
         }}
       >
         <Toolbar>
@@ -97,13 +106,16 @@ export default function AppLayout() {
               />
             </IconButton>
           )}
-          <IconButton
-            size="large"
-            aria-label="sidebar"
-            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          >
-            <EditNote />
-          </IconButton>
+
+          {!isDrawerOpen && (
+            <IconButton
+              size="large"
+              aria-label="sidebar"
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            >
+              <EditNote />
+            </IconButton>
+          )}
           <Typography
             variant="h6"
             component="div"
@@ -122,42 +134,8 @@ export default function AppLayout() {
             {mode === "dark" && <DarkMode />}
           </IconButton>
         </Toolbar>
-      </AppBar>
-      <Drawer
-        open={isDrawerOpen}
-        variant={isMobile ? "temporary" : "persistent"}
-        onClose={() => setIsDrawerOpen(false)}
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-      >
-        <Divider />
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: theme.spacing(0, 1),
-            ...theme.mixins.toolbar,
-          }}
-        >
-          <IconButton size="large" aria-label="sidebar">
-            <DataSaverOffOutlined />
-          </IconButton>
-          <IconButton
-            size="large"
-            aria-label="sidebar"
-            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          >
-            <ChevronLeft />
-          </IconButton>
-        </Box>
-      </Drawer>
-    </Box>
+      </ResponsiveBox>
+    </StyledAppBar>
+    // </Container>
   );
 }
