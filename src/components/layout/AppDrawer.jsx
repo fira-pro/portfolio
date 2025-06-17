@@ -37,7 +37,6 @@ export default function AppDrawer({
         },
       }}
     >
-      <Divider />
       <Box
         sx={{
           display: "flex",

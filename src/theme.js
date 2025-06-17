@@ -24,7 +24,7 @@ const theme = createTheme({
   colorSchemes: {
     light: {
       palette: {
-        mode: "light",
+        // mode: "light",
         primary: {
           main: "#000000", // black buttons, icons
           contrastText: "#ffffff",
@@ -45,7 +45,7 @@ const theme = createTheme({
     },
     dark: {
       palette: {
-        mode: "dark",
+        // mode: "dark",
         primary: {
           main: "#ffffff", // white buttons, icons
           contrastText: "#000000",

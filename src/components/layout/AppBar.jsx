@@ -23,12 +23,13 @@ import {
 //   width: "100%",
 // });
 
-const ResponsiveBox = styled(Box)({
-  "@container (min-width: 84rem)": {
+const ResponsiveBox = styled(Box)(({ theme }) => ({
+  // "@container (min-width: 84rem)":
+  [theme.containerQueries.up("lg")]: {
     backgroundColor: "transparent",
     border: "none",
   },
-});
+}));
 
 const StyledAppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
