@@ -23,6 +23,8 @@ import {
 //   width: "100%",
 // });
 
+// A wrapper to make AppBar transparent
+// when there is enough width
 const ResponsiveBox = styled(Box)(({ theme }) => ({
   // "@container (min-width: 84rem)":
   [theme.containerQueries.up("lg")]: {
