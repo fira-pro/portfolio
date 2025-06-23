@@ -10,15 +10,16 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { useContext } from "react";
 import {
   drawerWidth,
   mobileBreakPoint,
 } from "src/constants";
+import { LayoutContext } from "./AppLayout";
 
-export default function AppDrawer({
-  isDrawerOpen,
-  setIsDrawerOpen,
-}) {
+export default function AppDrawer() {
+  const { isDrawerOpen, setIsDrawerOpen } =
+    useContext(LayoutContext);
   const theme = useTheme();
   const isMobile = useMediaQuery(
     theme.breakpoints.down(mobileBreakPoint)

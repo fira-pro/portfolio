@@ -13,10 +13,12 @@ import {
   useColorScheme,
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
+import { useContext } from "react";
 import {
   drawerWidth,
   mobileBreakPoint,
 } from "src/constants";
+import { LayoutContext } from "./AppLayout";
 
 // const Container = styled("div")({
 //   containerType: "inline-size",
@@ -72,10 +74,9 @@ const StyledAppBar = styled(MuiAppBar, {
   ],
 }));
 
-export default function AppBar({
-  isDrawerOpen,
-  setIsDrawerOpen,
-}) {
+export default function AppBar() {
+  const { isDrawerOpen, setIsDrawerOpen } =
+    useContext(LayoutContext);
   const { mode, setMode } = useColorScheme();
 
   return (
@@ -114,7 +115,7 @@ export default function AppBar({
             <IconButton
               size="large"
               aria-label="sidebar"
-              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
             >
               <EditNote />
             </IconButton>

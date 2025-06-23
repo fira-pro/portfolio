@@ -3,26 +3,24 @@ import { useState } from "react";
 import AppBar from "./AppBar";
 import Main from "./Main";
 import AppDrawer from "./AppDrawer";
+import { createContext } from "react";
 
-export default function AppLayout() {
+export const LayoutContext = createContext();
+
+export default function AppLayout({ children }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
+    <LayoutContext.Provider
+      value={{ isDrawerOpen, setIsDrawerOpen }}
     >
-      <AppBar
-        isDrawerOpen={isDrawerOpen}
-        setIsDrawerOpen={setIsDrawerOpen}
-      />
-
-      <AppDrawer
-        isDrawerOpen={isDrawerOpen}
-        setIsDrawerOpen={setIsDrawerOpen}
-      />
-      <Main isDrawerOpen={isDrawerOpen} />
-    </Box>
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
+        {children}
+      </Box>
+    </LayoutContext.Provider>
   );
 }
