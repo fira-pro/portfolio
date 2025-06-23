@@ -1,6 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  // Define custom breakpoints for responsive design
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 767,
+      laptop: 1080,
+      desktop: 1400,
+    },
+  },
   typography: {
     fontFamily: `'Geist', 'Manrope', 'sans-serif'`,
     h1: { fontWeight: 600, fontSize: "2.5rem" },
