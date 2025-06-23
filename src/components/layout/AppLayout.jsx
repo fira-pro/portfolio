@@ -1,19 +1,9 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
-import AppBar from "./AppBar";
-import Main from "./Main";
-import AppDrawer from "./AppDrawer";
-import { createContext } from "react";
-
-export const LayoutContext = createContext();
+import { LayoutProvider } from "./LayoutContext";
 
 export default function AppLayout({ children }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   return (
-    <LayoutContext.Provider
-      value={{ isDrawerOpen, setIsDrawerOpen }}
-    >
+    <LayoutProvider>
       <Box
         sx={{
           display: "flex",
@@ -21,6 +11,6 @@ export default function AppLayout({ children }) {
       >
         {children}
       </Box>
-    </LayoutContext.Provider>
+    </LayoutProvider>
   );
 }

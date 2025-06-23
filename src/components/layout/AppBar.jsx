@@ -13,12 +13,11 @@ import {
   useColorScheme,
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
-import { useContext } from "react";
 import {
   drawerWidth,
   mobileBreakPoint,
 } from "src/constants";
-import { LayoutContext } from "./AppLayout";
+import { useLayout } from "./LayoutContext";
 
 // const Container = styled("div")({
 //   containerType: "inline-size",
@@ -75,8 +74,7 @@ const StyledAppBar = styled(MuiAppBar, {
 }));
 
 export default function AppBar() {
-  const { isDrawerOpen, setIsDrawerOpen } =
-    useContext(LayoutContext);
+  const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const { mode, setMode } = useColorScheme();
 
   return (

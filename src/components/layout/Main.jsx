@@ -8,8 +8,7 @@ import {
   mobileBreakPoint,
 } from "src/constants";
 import DrawerHeader from "./DrawerHeader";
-import { useContext } from "react";
-import { LayoutContext } from "./AppLayout";
+import { useLayout } from "./LayoutContext";
 
 const StyledMain = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",
@@ -44,7 +43,7 @@ const StyledMain = styled("main", {
 }));
 
 export default function Main() {
-  const { isDrawerOpen } = useContext(LayoutContext);
+  const { isDrawerOpen } = useLayout();
   return (
     <StyledMain open={isDrawerOpen}>
       <DrawerHeader />

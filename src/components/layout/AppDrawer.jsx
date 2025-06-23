@@ -4,22 +4,19 @@ import {
 } from "@mui/icons-material";
 import {
   Box,
-  Divider,
   Drawer,
   IconButton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useContext } from "react";
 import {
   drawerWidth,
   mobileBreakPoint,
 } from "src/constants";
-import { LayoutContext } from "./AppLayout";
+import { useLayout } from "./LayoutContext";
 
 export default function AppDrawer() {
-  const { isDrawerOpen, setIsDrawerOpen } =
-    useContext(LayoutContext);
+  const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const theme = useTheme();
   const isMobile = useMediaQuery(
     theme.breakpoints.down(mobileBreakPoint)
