@@ -1,8 +1,8 @@
 import { useColorScheme } from "@mui/material/styles";
 import AppLayout from "./components/layout/AppLayout";
-import AppBar from "./components/layout/AppBar";
-import AppDrawer from "./components/layout/AppDrawer";
-import Main from "./components/layout/Main";
+import AppBarContent from "./components/layout/AppBarContent";
+import AppDrawerContent from "./components/layout/AppDrawerContent";
+import MainContent from "./components/layout/MainContent";
 export default function App() {
   const { mode } = useColorScheme();
   if (!mode) {
@@ -10,9 +10,17 @@ export default function App() {
   }
   return (
     <AppLayout>
-      <AppBar />
-      <AppDrawer />
-      <Main />
+      <AppLayout.AppBar>
+        <AppBarContent />
+      </AppLayout.AppBar>
+
+      <AppLayout.AppDrawer>
+        <AppDrawerContent />
+      </AppLayout.AppDrawer>
+
+      <AppLayout.Main>
+        <MainContent />
+      </AppLayout.Main>
     </AppLayout>
   );
 }
