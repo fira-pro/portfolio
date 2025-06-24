@@ -5,12 +5,13 @@ import {
 import {
   Box,
   IconButton,
+  Tooltip,
   useTheme,
 } from "@mui/material";
 import { useLayout } from "./LayoutContext";
 
 export default function AppDrawerContent() {
-  const { isDrawerOpen, setIsDrawerOpen } = useLayout();
+  const { setIsDrawerOpen } = useLayout();
   const theme = useTheme();
 
   return (
@@ -26,13 +27,21 @@ export default function AppDrawerContent() {
       <IconButton size="large" aria-label="sidebar">
         <DataSaverOffOutlined />
       </IconButton>
-      <IconButton
-        size="large"
-        aria-label="sidebar"
-        onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+
+      <Tooltip
+        title="Close sidebar"
+        placement="bottom"
+        disableInteractive
       >
-        <ChevronLeft />
-      </IconButton>
+        <IconButton
+          size="large"
+          aria-label="close sidebar"
+          onClick={() => setIsDrawerOpen(false)}
+          sx={{ cursor: "e-resize" }}
+        >
+          <ChevronLeft />
+        </IconButton>
+      </Tooltip>
     </Box>
   );
 }

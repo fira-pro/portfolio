@@ -7,6 +7,7 @@ import {
 import {
   IconButton,
   Toolbar,
+  Tooltip,
   Typography,
   useColorScheme,
 } from "@mui/material";
@@ -25,25 +26,38 @@ export default function AppBarContent() {
     // <Container>
     <Toolbar>
       {!isDrawerOpen && (
-        <IconButton
-          size="large"
-          aria-label="sidebar"
-          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+        <Tooltip
+          title="Open sidebar"
+          placement="auto"
+          disableInteractive
         >
-          <ViewSidebarOutlined
-            sx={{ transform: "rotate(180deg)" }}
-          />
-        </IconButton>
+          <IconButton
+            size="large"
+            aria-label="open sidebar"
+            onClick={() => setIsDrawerOpen(true)}
+            sx={{ cursor: "e-resize" }}
+          >
+            <ViewSidebarOutlined
+              sx={{ transform: "rotate(180deg)" }}
+            />
+          </IconButton>
+        </Tooltip>
       )}
 
       {!isDrawerOpen && (
-        <IconButton
-          size="large"
-          aria-label="sidebar"
-          // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+        <Tooltip
+          title="New chat"
+          placement="bottom"
+          disableInteractive
         >
-          <EditNote />
-        </IconButton>
+          <IconButton
+            size="large"
+            aria-label="new chat"
+            // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          >
+            <EditNote />
+          </IconButton>
+        </Tooltip>
       )}
       <Typography
         variant="h6"
@@ -52,16 +66,22 @@ export default function AppBarContent() {
       >
         Fira
       </Typography>
-      <IconButton
-        size="large"
-        aria-label="Toggle theme"
-        onClick={() =>
-          setMode(mode === "light" ? "dark" : "light")
-        }
+      <Tooltip
+        title="Toggle theme"
+        placement="auto"
+        disableInteractive
       >
-        {mode === "light" && <LightMode />}
-        {mode === "dark" && <DarkMode />}
-      </IconButton>
+        <IconButton
+          size="large"
+          aria-label="Toggle theme"
+          onClick={() =>
+            setMode(mode === "light" ? "dark" : "light")
+          }
+        >
+          {mode === "dark" && <LightMode />}
+          {mode === "light" && <DarkMode />}
+        </IconButton>
+      </Tooltip>
     </Toolbar>
 
     // </Container>
