@@ -2,7 +2,7 @@ import { Container, Typography } from "@mui/material";
 
 export default function MainContent() {
   return (
-    <Container maxWidth="tablet">
+    <Container maxWidth="sm">
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipisicing
         elit. Corporis debitis unde recusandae molestias

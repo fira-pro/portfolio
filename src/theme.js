@@ -1,13 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
-  // Define custom breakpoints for responsive design
+  // Modifying the default breakpoints
+  // to match the design system
   breakpoints: {
     values: {
-      mobile: 0,
-      tablet: 767,
-      laptop: 1080,
-      desktop: 1400,
+      xs: 0,
+      sm: 767,
+      md: 1080,
+      lg: 1400,
+      xl: 1600,
     },
   },
   typography: {

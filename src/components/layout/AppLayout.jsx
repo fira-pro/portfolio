@@ -18,7 +18,7 @@ import DrawerHeader from "./DrawerHeader";
 // when there is enough width
 const ResponsiveBox = styled(Box)(({ theme }) => ({
   // "@container (min-width: 84rem)":
-  [theme.containerQueries.up("desktop")]: {
+  [theme.containerQueries.up("lg")]: {
     backgroundColor: "transparent",
     border: "none",
   },
@@ -46,7 +46,7 @@ const StyledAppBar = styled(MuiAppBar, {
     {
       props: ({ open }) => open,
       style: {
-        [theme.breakpoints.up("tablet")]: {
+        [theme.breakpoints.up("sm")]: {
           width: `calc(100% - ${drawerWidth}px)`,
           marginLeft: `${drawerWidth}px`,
           transition: theme.transitions.create(
@@ -75,14 +75,14 @@ const StyledMain = styled("main", {
   // Above mobile break point, add a negative left margin with a value of drawer width
   // to make it look the drawer isn't there when it is closed. when it is open remove the left margin
   // which naturally pushes the the content to the right
-  [theme.breakpoints.up("tablet")]: {
+  [theme.breakpoints.up("sm")]: {
     marginLeft: `-${drawerWidth}px`,
   },
   variants: [
     {
       props: ({ open }) => open,
       style: {
-        [theme.breakpoints.up("tablet")]: {
+        [theme.breakpoints.up("sm")]: {
           transition: theme.transitions.create("margin", {
             easing: theme.transitions.easing.easeOut,
             duration:
@@ -138,7 +138,7 @@ function AppBar({ children }) {
 function AppDrawer({ children }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(
-    theme.breakpoints.down("tablet")
+    theme.breakpoints.down("sm")
   );
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   return (
