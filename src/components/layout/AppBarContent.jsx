@@ -8,15 +8,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-// import useColorScheme from '@mui/material/useColorScheme';
 import { useColorScheme } from "@mui/material/styles";
 import { useLayout } from "./LayoutContext";
 import { useState } from "react";
-
-// const Container = styled("div")({
-//   containerType: "inline-size",
-//   width: "100%",
-// });
 
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
