@@ -1,9 +1,7 @@
-import {
-  Box,
-  Drawer,
-  styled,
-  useMediaQuery,
-} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { LayoutProvider, useLayout } from "./LayoutContext";
 import MuiAppBar from "@mui/material/AppBar";
 

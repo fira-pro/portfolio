@@ -1,13 +1,9 @@
-import {
-  ChevronLeft,
-  DataSaverOffOutlined,
-} from "@mui/icons-material";
-import {
-  Box,
-  IconButton,
-  Tooltip,
-  useTheme,
-} from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 import { useLayout } from "./LayoutContext";
 
 export default function AppDrawerContent() {
@@ -25,7 +21,7 @@ export default function AppDrawerContent() {
       }}
     >
       <IconButton size="large" aria-label="sidebar">
-        <DataSaverOffOutlined />
+        <DataSaverOffOutlinedIcon />
       </IconButton>
 
       <Tooltip
@@ -39,7 +35,7 @@ export default function AppDrawerContent() {
           onClick={() => setIsDrawerOpen(false)}
           sx={{ cursor: "e-resize" }}
         >
-          <ChevronLeft />
+          <ChevronLeftIcon />
         </IconButton>
       </Tooltip>
     </Box>

@@ -1,18 +1,15 @@
-import {
-  DarkMode,
-  EditNote,
-  LightMode,
-  ViewSidebarOutlined,
-} from "@mui/icons-material";
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-  useColorScheme,
-} from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import ViewSidebarOutlinedIcon from "@mui/icons-material/ViewSidebarOutlined";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+// import useColorScheme from '@mui/material/useColorScheme';
+import { useColorScheme } from "@mui/material/styles";
 import { useLayout } from "./LayoutContext";
 import { useState } from "react";
 
@@ -73,7 +70,7 @@ export default function AppBarContent() {
             onClick={() => setIsDrawerOpen(true)}
             sx={{ cursor: "e-resize" }}
           >
-            <ViewSidebarOutlined
+            <ViewSidebarOutlinedIcon
               sx={{ transform: "rotate(180deg)" }}
             />
           </IconButton>
@@ -91,7 +88,7 @@ export default function AppBarContent() {
             aria-label="new chat"
             // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
           >
-            <EditNote />
+            <EditNoteIcon />
           </IconButton>
         </Tooltip>
       )}
@@ -117,8 +114,8 @@ export default function AppBarContent() {
             )
           }
         >
-          {effectiveMode === "dark" && <LightMode />}
-          {effectiveMode === "light" && <DarkMode />}
+          {effectiveMode === "dark" && <LightModeIcon />}
+          {effectiveMode === "light" && <DarkModeIcon />}
         </IconButton>
       </Tooltip>
 
