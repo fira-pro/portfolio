@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 export default function ChatBubble({
   type = "user", // 'user' or 'assistant'
   children,
@@ -13,7 +12,7 @@ export default function ChatBubble({
         py: 2,
       }}
     >
-      <Typography>{children}</Typography>
+      {children}
     </Box>
   );
 }
