@@ -8,16 +8,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-// import useColorScheme from '@mui/material/useColorScheme';
 import { useColorScheme } from "@mui/material/styles";
 import { useLayout } from "./LayoutContext";
 import { useState } from "react";
-
-// const Container = styled("div")({
-//   containerType: "inline-size",
-//   width: "100%",
-// });
-
+import Box from "@mui/material/Box";
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const { mode, setMode, systemMode } = useColorScheme();
@@ -57,109 +51,127 @@ export default function AppBarContent() {
   };
 
   return (
-    <Toolbar>
-      {!isDrawerOpen && (
+    <Toolbar
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        sx={{ pointerEvents: "auto" }}
+      >
+        {!isDrawerOpen && (
+          <Tooltip
+            title="Open sidebar"
+            placement="auto"
+            disableInteractive
+          >
+            <IconButton
+              size="large"
+              aria-label="open sidebar"
+              onClick={() => setIsDrawerOpen(true)}
+              sx={{ cursor: "e-resize" }}
+            >
+              <ViewSidebarOutlinedIcon
+                sx={{ transform: "rotate(180deg)" }}
+              />
+            </IconButton>
+          </Tooltip>
+        )}
+
+        {!isDrawerOpen && (
+          <Tooltip
+            title="New chat"
+            placement="bottom"
+            disableInteractive
+          >
+            <IconButton
+              size="large"
+              aria-label="new chat"
+              // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            >
+              <EditNoteIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+        <Typography
+          variant="h6"
+          component="div"
+          // sx={{ flexGrow: 1 }}
+        >
+          Fira
+        </Typography>
+      </Box>
+
+      <Box
+        display="flex"
+        alignItems="center"
+        sx={{ pointerEvents: "auto" }}
+      >
         <Tooltip
-          title="Open sidebar"
+          title="Toggle theme, right click for options"
           placement="auto"
           disableInteractive
+          onContextMenu={handleContextMenu}
         >
           <IconButton
             size="large"
-            aria-label="open sidebar"
-            onClick={() => setIsDrawerOpen(true)}
-            sx={{ cursor: "e-resize" }}
+            aria-label="Toggle theme"
+            onClick={() =>
+              setMode(
+                effectiveMode === "light" ? "dark" : "light"
+              )
+            }
           >
-            <ViewSidebarOutlinedIcon
-              sx={{ transform: "rotate(180deg)" }}
-            />
+            {effectiveMode === "dark" && <LightModeIcon />}
+            {effectiveMode === "light" && <DarkModeIcon />}
           </IconButton>
         </Tooltip>
-      )}
 
-      {!isDrawerOpen && (
-        <Tooltip
-          title="New chat"
-          placement="bottom"
-          disableInteractive
-        >
-          <IconButton
-            size="large"
-            aria-label="new chat"
-            // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          >
-            <EditNoteIcon />
-          </IconButton>
-        </Tooltip>
-      )}
-      <Typography
-        variant="h6"
-        component="div"
-        sx={{ flexGrow: 1 }}
-      >
-        Fira
-      </Typography>
-      <Tooltip
-        title="Toggle theme, right click for options"
-        placement="auto"
-        disableInteractive
-        onContextMenu={handleContextMenu}
-      >
-        <IconButton
-          size="large"
-          aria-label="Toggle theme"
-          onClick={() =>
-            setMode(
-              effectiveMode === "light" ? "dark" : "light"
-            )
+        <Menu
+          open={contextMenu !== null}
+          onClose={handleClose}
+          anchorReference="anchorPosition"
+          anchorPosition={
+            contextMenu !== null
+              ? {
+                  top: contextMenu.mouseY,
+                  left: contextMenu.mouseX,
+                }
+              : undefined
           }
         >
-          {effectiveMode === "dark" && <LightModeIcon />}
-          {effectiveMode === "light" && <DarkModeIcon />}
-        </IconButton>
-      </Tooltip>
-
-      <Menu
-        open={contextMenu !== null}
-        onClose={handleClose}
-        anchorReference="anchorPosition"
-        anchorPosition={
-          contextMenu !== null
-            ? {
-                top: contextMenu.mouseY,
-                left: contextMenu.mouseX,
-              }
-            : undefined
-        }
-      >
-        <MenuItem
-          selected={mode === "system"}
-          onClick={() => {
-            handleClose();
-            setMode("system");
-          }}
-        >
-          System
-        </MenuItem>
-        <MenuItem
-          selected={mode === "light"}
-          onClick={() => {
-            handleClose();
-            setMode("light");
-          }}
-        >
-          Light
-        </MenuItem>
-        <MenuItem
-          selected={mode === "dark"}
-          onClick={() => {
-            handleClose();
-            setMode("dark");
-          }}
-        >
-          Dark
-        </MenuItem>
-      </Menu>
+          <MenuItem
+            selected={mode === "system"}
+            onClick={() => {
+              handleClose();
+              setMode("system");
+            }}
+          >
+            System
+          </MenuItem>
+          <MenuItem
+            selected={mode === "light"}
+            onClick={() => {
+              handleClose();
+              setMode("light");
+            }}
+          >
+            Light
+          </MenuItem>
+          <MenuItem
+            selected={mode === "dark"}
+            onClick={() => {
+              handleClose();
+              setMode("dark");
+            }}
+          >
+            Dark
+          </MenuItem>
+        </Menu>
+      </Box>
     </Toolbar>
   );
 }

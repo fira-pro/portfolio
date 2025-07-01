@@ -117,6 +117,7 @@ function AppBar({ children }) {
       enableColorOnDark
       sx={{
         boxShadow: "none",
+        pointerEvents: { lg: "none", sm: "auto" },
       }}
     >
       <ResponsiveBox
