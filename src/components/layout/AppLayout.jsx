@@ -12,16 +12,6 @@ import {
 import { useTheme } from "@emotion/react";
 import DrawerHeader from "./DrawerHeader";
 
-// A wrapper to make AppBar transparent
-// when there is enough width
-const ResponsiveBox = styled(Box)(({ theme }) => ({
-  // "@container (min-width: 84rem)":
-  [theme.containerQueries.up("lg")]: {
-    backgroundColor: "transparent",
-    border: "none",
-  },
-}));
-
 const StyledAppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
@@ -117,19 +107,27 @@ function AppBar({ children }) {
       enableColorOnDark
       sx={{
         boxShadow: "none",
-        pointerEvents: { lg: "none", sm: "auto" },
+        pointerEvents: "none",
       }}
     >
-      <ResponsiveBox
-        sx={{
+      {/* A wrapper to make AppBar transparent when there is
+      enough width */}
+      <Box
+        sx={(theme) => ({
           backgroundColor: "background.default",
           borderBottomColor: "divider",
           borderBottomStyle: "solid",
           borderBottomWidth: "0.8px",
-        }}
+          pointerEvents: "initial",
+          [theme.containerQueries.up("lg")]: {
+            backgroundColor: "transparent",
+            border: "none",
+            pointerEvents: "none",
+          },
+        })}
       >
         {children}
-      </ResponsiveBox>
+      </Box>
     </StyledAppBar>
   );
 }
