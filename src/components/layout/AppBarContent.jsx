@@ -55,12 +55,15 @@ export default function AppBarContent() {
       sx={{
         display: "flex",
         justifyContent: "space-between",
+        "& > *": {
+          pointerEvents: "auto",
+        },
       }}
     >
       <Box
         display="flex"
         alignItems="center"
-        sx={{ pointerEvents: "auto" }}
+        // sx={{ pointerEvents: "auto" }}
       >
         {!isDrawerOpen && (
           <Tooltip
@@ -108,7 +111,7 @@ export default function AppBarContent() {
       <Box
         display="flex"
         alignItems="center"
-        sx={{ pointerEvents: "auto" }}
+        // sx={{ pointerEvents: "auto" }}
       >
         <Tooltip
           title="Toggle theme, right click for options"
