@@ -1,15 +1,27 @@
-export const sections = [
+export const portfolioSections = [
   {
-    title: "About Me",
-    content: "I'm Firaol, a passionate developer...",
-  },
-  {
+    id: "skills",
     title: "Skills",
-    content: "React, MUI, Framer Motion, Zustand...",
+    content: "Your skills content here...",
   },
   {
+    id: "projects",
     title: "Projects",
-    content: "Here are some projects I've built...",
+    content: "Your projects content here...",
   },
-  // Add more sections as needed
+  {
+    id: "experience",
+    title: "Experience",
+    content: "Your experience content here...",
+  },
+  {
+    id: "education",
+    title: "Education",
+    content: "Your education content here...",
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    content: "Your contact content here...",
+  },
 ];
