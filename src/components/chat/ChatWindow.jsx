@@ -1,105 +1,58 @@
 import Box from "@mui/material/Box";
-import IntroHeader from "./IntroHeader";
-import ChatBubble from "./ChatBubble";
-import Markdown from "react-markdown";
-import { useState } from "react";
-import { useEffect } from "react";
-import remarkGfm from "remark-gfm";
-import Suggestions from "./Suggestions";
 import ChatList from "./ChatList";
-
-const markdown = `
-# Lorem Ipsum
-
-**Lorem ipsum** dolor sit amet, _consectetur_ adipiscing elit.
-
-- Item 1
-- Item 2
-- Item 3
-
-\`\`\`js
-console.log("Hello, world!");
-\`\`\`
-
-[Learn more](https://www.lipsum.com/)
-
----
-
-![Vite Logo](/vite.svg)
-
-## More Markdown Ipsum
-
-> "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-
-### Code Example
-
-\`\`\`python
-def greet():
-    print("Hello, Markdown!")
-\`\`\`
-
-1. First ordered item
-2. Second item
-3. Third item
-
----
-
-### Table
-
-| Syntax | Description |
-|--------|-------------|
-| Header | Title       |
-| Paragraph | Text     |
-
----
-
-#### Blockquote
-
-> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
-
----
-
-**Bold text**, *italic text*, and \`inline code\`.
-
-- [x] Task 1
-- [ ] Task 2
-- [ ] Task 3
-
----
-`;
+import usePortfolioStore from "src/store";
+import Fab from "@mui/material/Fab";
+import Zoom from "@mui/material/Zoom";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { useAutoScroll } from "src/hooks/useAutoScroll";
+import DrawerHeader from "../layout/DrawerHeader";
 
 export default function ChatWindow() {
-  const [markdownStream, setMarkdownStream] = useState("");
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      setMarkdownStream(
-        markdownStream +
-          markdown.substring(
-            markdownStream.length,
-            markdownStream.length + 10
-          )
-      );
-      if (markdownStream.length >= markdown.length)
-        // setMarkdownStream("");
-        clearTimeout(id);
-    }, 10);
-  }, [markdownStream]);
+  const { streamedSections, currentStreamingId } =
+    usePortfolioStore();
+  const {
+    bottomRef,
+    containerRef,
+    showScrollButton,
+    scrollToBottom,
+  } = useAutoScroll([
+    streamedSections.length,
+    currentStreamingId,
+  ]);
 
   return (
     <Box
-      maxWidth="sm"
+      ref={containerRef}
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "start",
-        alignItems: "center",
-        py: 2,
+        flexGrow: 1,
+        width: "100%",
+        overflowY: "auto",
+        position: "relative",
       }}
     >
-      <IntroHeader />
-      <Suggestions />
+      <DrawerHeader />
+
       <ChatList />
+
+      <div ref={bottomRef}></div>
+
+      {/* Floating scroll-to-bottom button */}
+      <Zoom in={showScrollButton}>
+        <Fab
+          color="primary"
+          size="small"
+          onClick={scrollToBottom}
+          sx={{
+            position: "fixed",
+            bottom: 16,
+            right: 16,
+            zIndex: 1000,
+          }}
+          aria-label="Scroll to bottom"
+        >
+          <ArrowDownwardIcon />
+        </Fab>
+      </Zoom>
     </Box>
   );
 }
