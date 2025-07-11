@@ -8,7 +8,7 @@ import MuiAppBar from "@mui/material/AppBar";
 import {
   drawerWidth,
   // mobileBreakPoint,
-} from "src/constants";
+} from "src/data/constants";
 import { useTheme } from "@emotion/react";
 import DrawerHeader from "./DrawerHeader";
 
@@ -54,7 +54,14 @@ const StyledAppBar = styled(MuiAppBar, {
 const StyledMain = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
+  containerType: "inline-size",
+  height: "100vh",
   flexGrow: 1,
+  // // To make the main content take the full height of the viewport
+  // // by setting flexGrow
+  display: "flex",
+  flexDirection: "column",
+
   // padding: theme.spacing(3),
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
@@ -89,6 +96,7 @@ function AppLayout({ children }) {
       <Box
         sx={{
           display: "flex",
+          // height: "100vh",
         }}
       >
         {children}
@@ -159,9 +167,20 @@ function AppDrawer({ children }) {
 
 function Main({ children }) {
   const { isDrawerOpen } = useLayout();
+
   return (
     <StyledMain open={isDrawerOpen}>
-      <DrawerHeader />
+      <Box
+        about="wrapper"
+        sx={(theme) => ({
+          display: "block",
+          [theme.containerQueries.up("lg")]: {
+            display: "none",
+          },
+        })}
+      >
+        <DrawerHeader />
+      </Box>
       {children}
     </StyledMain>
   );
