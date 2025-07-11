@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+src/components/test/ChatMessage.jsx
+src/components/test/Portfolio.jsx
+src/components/test/SectionSuggestions.jsx
+src/components/test/StreamingSection.jsx
