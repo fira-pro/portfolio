@@ -8,16 +8,21 @@ import { useAutoScroll } from "src/hooks/useAutoScroll";
 import DrawerHeader from "../layout/DrawerHeader";
 
 export default function ChatWindow() {
-  const { streamedSections, currentStreamingId } =
-    usePortfolioStore();
+  const {
+    streamedSections,
+    currentStreamingId,
+    streamedContent,
+  } = usePortfolioStore();
   const {
     bottomRef,
     containerRef,
     showScrollButton,
     scrollToBottom,
   } = useAutoScroll([
-    streamedSections.length,
-    currentStreamingId,
+    streamedSections.length, // [0] - trigger scroll on new messages
+    currentStreamingId, // [1] - detect streaming state changes
+    streamedSections, // [2] - array of section IDs for targeting
+    Object.keys(streamedContent).length, // [3] - detect content changes
   ]);
 
   return (
@@ -28,6 +33,7 @@ export default function ChatWindow() {
         width: "100%",
         overflowY: "auto",
         position: "relative",
+        scrollBehavior: "auto",
       }}
     >
       <DrawerHeader />
