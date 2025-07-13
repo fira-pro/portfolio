@@ -173,9 +173,12 @@ function Main({ children }) {
       <Box
         about="wrapper"
         sx={(theme) => ({
-          display: "block",
+          opacity: 1,
+          height: "auto",
+          transition: "opacity 0.3s ease, height 0.3s ease",
           [theme.containerQueries.up("lg")]: {
-            display: "none",
+            opacity: 0,
+            height: 0,
           },
         })}
       >
