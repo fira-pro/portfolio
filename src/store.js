@@ -53,7 +53,7 @@ const usePortfolioStore = create((set, get) => ({
 
     // Simulate loading delay
     await new Promise((resolve) =>
-      setTimeout(resolve, streamSpeed * 5)
+      setTimeout(resolve, streamSpeed * 10)
     );
 
     // Start streaming
@@ -105,11 +105,22 @@ const usePortfolioStore = create((set, get) => ({
         },
       }));
 
-      // Delay between words (adjust for speed)
+      // ! Still not fixed
+      // Use requestAnimationFrame instead of setTimeout for better performance
+      // and to avoid pausing when tab is not active
       if (i < words.length) {
-        await new Promise((resolve) =>
-          setTimeout(resolve, streamSpeed)
-        );
+        await new Promise((resolve) => {
+          let startTime = performance.now();
+          const animate = (currentTime) => {
+            if (currentTime - startTime >= streamSpeed) {
+              // 100ms delay
+              resolve();
+            } else {
+              requestAnimationFrame(animate);
+            }
+          };
+          requestAnimationFrame(animate);
+        });
       }
     }
   },
