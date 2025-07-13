@@ -3,13 +3,29 @@ import ChatBubble from "./ChatBubble";
 import Markdown from "react-markdown";
 import usePortfolioStore from "src/store";
 import CircularProgress from "@mui/material/CircularProgress";
-const ChatMessage = ({ section }) => {
+import Box from "@mui/material/Box";
+const ChatMessage = ({ section, isLast }) => {
   const { streamedContent } = usePortfolioStore();
   const content = streamedContent[section.id] || {};
 
   return (
-    <>
-      <ChatBubble type="user">{section.title}</ChatBubble>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "start",
+        alignItems: "center",
+        width: "100%",
+        p: 2,
+        height:
+          (section.status === "streaming") | isLast
+            ? "100vh"
+            : "auto",
+      }}
+    >
+      <ChatBubble type="user" dataUserMessage={section.id}>
+        {section.title} {section.status}
+      </ChatBubble>
 
       {section.status === "loading" ? (
         <CircularProgress
@@ -23,7 +39,7 @@ const ChatMessage = ({ section }) => {
           </Markdown>
         </ChatBubble>
       )}
-    </>
+    </Box>
   );
 };
 
