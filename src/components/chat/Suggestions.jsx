@@ -4,26 +4,58 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 const Suggestions = () => {
-  const { sections, startStreaming, currentStreamingId } =
-    usePortfolioStore();
+  const {
+    sections,
+    startStreaming,
+    currentStreamingId,
+    streamedSections,
+  } = usePortfolioStore();
+  const isJustStarted = streamedSections.length === 0;
+
+  const handleScrollToContact = () => {
+    if (streamedSections.find((s) => s === "contact")) {
+      const userMessageElement = document.querySelector(
+        "[data-user-message=contact]"
+      );
+      if (userMessageElement) {
+        userMessageElement?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    } else {
+      startStreaming("contact");
+    }
+  };
+
+  const suggestionsBoxStyles = isJustStarted
+    ? {}
+    : {
+        borderTopColor: "divider",
+        borderTopStyle: "solid",
+        borderTopWidth: "0.8px",
+      };
 
   return (
     <Box
-      mb={3}
+      pt={1}
+      // mb={1}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "center",
+        ...suggestionsBoxStyles,
       }}
     >
-      <Typography
-        color="text.secondary"
-        my={2}
-        textAlign="center"
-      >
-        What would you like to know about me?
-      </Typography>
+      {isJustStarted && (
+        <Typography
+          color="text.secondary"
+          my={2}
+          textAlign="center"
+        >
+          What would you like to know about me?
+        </Typography>
+      )}
       <Stack
         direction="row"
         flexWrap="wrap"
@@ -79,6 +111,26 @@ const Suggestions = () => {
           </Button>
         ))}
       </Stack>
+      {!isJustStarted && (
+        <Typography
+          color="textSecondary"
+          variant="caption"
+          align="center"
+          py={1}
+        >
+          Fira can develop amazing softwares. Check{" "}
+          <span
+            onClick={handleScrollToContact}
+            style={{
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+          >
+            contact
+          </span>{" "}
+          info.
+        </Typography>
+      )}
     </Box>
   );
 };
