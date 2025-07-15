@@ -108,7 +108,7 @@ export const useAutoScroll = (dependencies = []) => {
   const scrollToBottom = () => {
     bottomRef.current?.scrollIntoView({
       behavior: "smooth",
-      block: "end",
+      // block: "end",
     });
   };
 
