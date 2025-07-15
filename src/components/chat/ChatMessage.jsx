@@ -24,7 +24,7 @@ const ChatMessage = ({ section, isLast }) => {
       }}
     >
       <ChatBubble type="user" dataUserMessage={section.id}>
-        {section.title} {section.status}
+        {section.title}
       </ChatBubble>
 
       {section.status === "loading" ? (
