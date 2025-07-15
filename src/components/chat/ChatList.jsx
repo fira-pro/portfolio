@@ -3,11 +3,11 @@ import usePortfolioStore from "src/store";
 import IntroHeader from "./IntroHeader";
 import Suggestions from "./Suggestions";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 const ChatList = () => {
   const { sections, streamedSections } =
     usePortfolioStore();
 
-  const isJustStarted = streamedSections.length === 0;
   return (
     <Container
       maxWidth="sm"
@@ -17,9 +17,6 @@ const ChatList = () => {
         justifyContent: "center",
       }}
     >
-      {isJustStarted && <IntroHeader />}
-      <Suggestions />
-
       {streamedSections.map((sectionId, index) => {
         const section = sections.find(
           (s) => s.id === sectionId

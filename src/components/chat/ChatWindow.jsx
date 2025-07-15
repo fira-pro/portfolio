@@ -6,7 +6,9 @@ import Zoom from "@mui/material/Zoom";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useAutoScroll } from "src/hooks/useAutoScroll";
 import DrawerHeader from "../layout/DrawerHeader";
-
+import IntroHeader from "./IntroHeader";
+import Suggestions from "./Suggestions";
+import Container from "@mui/material/Container";
 export default function ChatWindow() {
   const {
     streamedSections,
@@ -25,6 +27,8 @@ export default function ChatWindow() {
     Object.keys(streamedContent).length, // [3] - detect content changes
   ]);
 
+  const isJustStarted = streamedSections.length === 0;
+
   return (
     <Box
       ref={containerRef}
@@ -34,10 +38,27 @@ export default function ChatWindow() {
         overflowY: "auto",
         position: "relative",
         scrollBehavior: "auto",
+        display: "flex",
+        flexDirection: "column",
+        // justifyContent: "start",
       }}
     >
-      <DrawerHeader />
-
+      {/* <DrawerHeader /> */}
+      {isJustStarted && (
+        <Container
+          maxWidth="sm"
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <IntroHeader />
+          <Suggestions />
+        </Container>
+      )}
       <ChatList />
 
       <div ref={bottomRef}></div>
