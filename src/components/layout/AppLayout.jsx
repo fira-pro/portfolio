@@ -171,7 +171,6 @@ function Main({ children }) {
   return (
     <StyledMain open={isDrawerOpen}>
       <Box
-        about="wrapper"
         sx={(theme) => ({
           opacity: 1,
           height: "auto",
