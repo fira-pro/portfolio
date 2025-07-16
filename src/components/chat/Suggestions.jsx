@@ -63,9 +63,13 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
               handleScrollToOrStream(section.id)
             }
             disabled={currentStreamingId !== null}
-            variant="outlined"
+            variant={
+              section.status === "completed" ||
+              section.status === "streaming"
+                ? "outlined"
+                : "contained"
+            }
             sx={{
-              borderRadius: 2,
               borderColor:
                 section.status === "completed"
                   ? "success.light"
@@ -73,30 +77,9 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
                     section.status === "streaming"
                   ? "info.light"
                   : "grey.300",
-              backgroundColor:
-                section.status === "completed"
-                  ? "success.lighter"
-                  : section.status === "loading" ||
-                    section.status === "streaming"
-                  ? "info.lighter"
-                  : "grey.100",
-              color:
-                section.status === "completed"
-                  ? "success.dark"
-                  : section.status === "loading" ||
-                    section.status === "streaming"
-                  ? "info.dark"
-                  : "grey.800",
-              opacity:
-                currentStreamingId !== null ? 0.5 : 1,
-              cursor:
-                currentStreamingId !== null
-                  ? "not-allowed"
-                  : "pointer",
-              transition: "background 0.2s, border 0.2s",
               px: 2,
               py: 1,
-              textTransform: "none",
+              textTransform: "capitalize",
             }}
           >
             {section.title}
