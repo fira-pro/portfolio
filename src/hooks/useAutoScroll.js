@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { delayBeforeScroll } from "src/data/constants";
 
 export const useAutoScroll = (dependencies = []) => {
   const bottomRef = useRef(null);
@@ -27,7 +28,7 @@ export const useAutoScroll = (dependencies = []) => {
             behavior: "smooth",
           });
         }
-      }, 50);
+      }, delayBeforeScroll);
 
       return () => clearTimeout(timer);
     }
