@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-const Suggestions = () => {
+const Suggestions = ({ scrollToSection = () => {} }) => {
   const {
     sections,
     startStreaming,
@@ -12,18 +12,11 @@ const Suggestions = () => {
   } = usePortfolioStore();
   const isJustStarted = streamedSections.length === 0;
 
-  const handleScrollToContact = () => {
-    if (streamedSections.find((s) => s === "contact")) {
-      const userMessageElement = document.querySelector(
-        "[data-user-message=contact]"
-      );
-      if (userMessageElement) {
-        userMessageElement?.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
+  const handleScrollToOrStream = (sectionId) => {
+    if (streamedSections.find((s) => s === sectionId)) {
+      scrollToSection(sectionId);
     } else {
-      startStreaming("contact");
+      startStreaming(sectionId);
     }
   };
 
@@ -66,7 +59,9 @@ const Suggestions = () => {
         {sections.map((section) => (
           <Button
             key={section.id}
-            onClick={() => startStreaming(section.id)}
+            onClick={() =>
+              handleScrollToOrStream(section.id)
+            }
             disabled={currentStreamingId !== null}
             variant="outlined"
             sx={{
@@ -120,7 +115,9 @@ const Suggestions = () => {
         >
           Fira can develop amazing softwares. Check{" "}
           <span
-            onClick={handleScrollToContact}
+            onClick={() =>
+              handleScrollToOrStream("contact")
+            }
             style={{
               cursor: "pointer",
               textDecoration: "underline",
