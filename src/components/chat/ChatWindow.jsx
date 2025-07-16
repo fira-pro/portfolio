@@ -30,56 +30,70 @@ export default function ChatWindow() {
   const isJustStarted = streamedSections.length === 0;
 
   return (
-    <Box
-      ref={containerRef}
-      sx={{
-        flexGrow: 1,
-        width: "100%",
-        overflowY: "auto",
-        position: "relative",
-        scrollBehavior: "auto",
-        display: "flex",
-        flexDirection: "column",
-        // justifyContent: "start",
-      }}
-    >
-      {/* <DrawerHeader /> */}
-      {isJustStarted && (
+    <>
+      <Box
+        ref={containerRef}
+        sx={{
+          flexGrow: 1,
+          width: "100%",
+          overflowY: "auto",
+          position: "relative",
+          scrollBehavior: "auto",
+          display: "flex",
+          flexDirection: "column",
+          // justifyContent: "start",
+        }}
+      >
+        {isJustStarted && (
+          <Container
+            maxWidth="sm"
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IntroHeader />
+            <Suggestions />
+          </Container>
+        )}
+        <ChatList />
+
+        <div ref={bottomRef}></div>
+      </Box>
+
+      {/* Display bottom fixed suggestions once the chat is started
+      and FAB absolutely positioned to scroll to bottom
+       */}
+      {!isJustStarted && (
         <Container
           maxWidth="sm"
           sx={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            position: "relative",
           }}
         >
-          <IntroHeader />
+          {/* Floating scroll-to-bottom button */}
+          <Zoom in={showScrollButton}>
+            <Fab
+              color="primary"
+              size="small"
+              onClick={scrollToBottom}
+              sx={{
+                position: "absolute",
+                top: -64,
+                right: 16,
+                zIndex: 1000,
+              }}
+              aria-label="Scroll to bottom"
+            >
+              <ArrowDownwardIcon />
+            </Fab>
+          </Zoom>
           <Suggestions />
         </Container>
       )}
-      <ChatList />
-
-      <div ref={bottomRef}></div>
-
-      {/* Floating scroll-to-bottom button */}
-      <Zoom in={showScrollButton}>
-        <Fab
-          color="primary"
-          size="small"
-          onClick={scrollToBottom}
-          sx={{
-            position: "fixed",
-            bottom: 16,
-            right: 16,
-            zIndex: 1000,
-          }}
-          aria-label="Scroll to bottom"
-        >
-          <ArrowDownwardIcon />
-        </Fab>
-      </Zoom>
-    </Box>
+    </>
   );
 }
