@@ -5,10 +5,10 @@ import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useAutoScroll } from "src/hooks/useAutoScroll";
-import DrawerHeader from "../layout/DrawerHeader";
 import IntroHeader from "./IntroHeader";
 import Suggestions from "./Suggestions";
 import Container from "@mui/material/Container";
+import Slide from "@mui/material/Slide";
 export default function ChatWindow() {
   const {
     streamedSections,
@@ -44,7 +44,12 @@ export default function ChatWindow() {
           // justifyContent: "start",
         }}
       >
-        {isJustStarted && (
+        <Zoom
+          in={isJustStarted}
+          timeout={{ enter: 500, exit: 0 }}
+          unmountOnExit
+          mountOnEnter
+        >
           <Container
             maxWidth="sm"
             sx={{
@@ -58,7 +63,7 @@ export default function ChatWindow() {
             <IntroHeader />
             <Suggestions />
           </Container>
-        )}
+        </Zoom>
         <ChatList />
 
         <div ref={bottomRef}></div>
@@ -67,7 +72,7 @@ export default function ChatWindow() {
       {/* Display bottom fixed suggestions once the chat is started
       and FAB absolutely positioned to scroll to bottom
        */}
-      {!isJustStarted && (
+      <Slide direction="down" in={!isJustStarted}>
         <Container
           maxWidth="sm"
           sx={{
@@ -93,7 +98,7 @@ export default function ChatWindow() {
           </Zoom>
           <Suggestions />
         </Container>
-      )}
+      </Slide>
     </>
   );
 }
