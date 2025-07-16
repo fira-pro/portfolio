@@ -14,20 +14,7 @@ export const useAutoScroll = (dependencies = []) => {
       const timer = setTimeout(() => {
         const lastSectionId =
           dependencies[2]?.[dependencies[0] - 1]; // Get last section ID
-        const userMessageElement = document.querySelector(
-          `[data-user-message="${lastSectionId}"]`
-        );
-
-        if (userMessageElement && containerRef.current) {
-          const container = containerRef.current;
-          const elementTop = userMessageElement.offsetTop;
-          const targetScroll = elementTop - 20; // 20px padding from top
-
-          container.scrollTo({
-            top: targetScroll,
-            behavior: "smooth",
-          });
-        }
+        scrollToSection(lastSectionId);
       }, delayBeforeScroll);
 
       return () => clearTimeout(timer);
@@ -113,10 +100,28 @@ export const useAutoScroll = (dependencies = []) => {
     });
   };
 
+  const scrollToSection = (sectionId) => {
+    const userMessageElement = document.querySelector(
+      `[data-user-message="${sectionId}"]`
+    );
+
+    if (userMessageElement && containerRef.current) {
+      const container = containerRef.current;
+      const elementTop = userMessageElement.offsetTop;
+      const targetScroll = elementTop - 20; // 20px padding from top
+
+      container.scrollTo({
+        top: targetScroll,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return {
     bottomRef,
     containerRef,
     showScrollButton,
     scrollToBottom,
+    scrollToSection,
   };
 };
