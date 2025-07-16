@@ -1,9 +1,6 @@
 import ChatMessage from "./ChatMessage";
 import usePortfolioStore from "src/store";
-import IntroHeader from "./IntroHeader";
-import Suggestions from "./Suggestions";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 const ChatList = () => {
   const { sections, streamedSections } =
     usePortfolioStore();

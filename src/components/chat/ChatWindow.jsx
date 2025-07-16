@@ -20,6 +20,7 @@ export default function ChatWindow() {
     containerRef,
     showScrollButton,
     scrollToBottom,
+    scrollToSection,
   } = useAutoScroll([
     streamedSections.length, // [0] - trigger scroll on new messages
     currentStreamingId, // [1] - detect streaming state changes
@@ -61,7 +62,9 @@ export default function ChatWindow() {
             }}
           >
             <IntroHeader />
-            <Suggestions />
+            <Suggestions
+              scrollToSection={scrollToSection}
+            />
           </Container>
         </Zoom>
         <ChatList />
@@ -96,7 +99,7 @@ export default function ChatWindow() {
               <ArrowDownwardIcon />
             </Fab>
           </Zoom>
-          <Suggestions />
+          <Suggestions scrollToSection={scrollToSection} />
         </Container>
       </Slide>
     </>
