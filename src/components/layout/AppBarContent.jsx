@@ -12,9 +12,17 @@ import { useColorScheme } from "@mui/material/styles";
 import { useLayout } from "./LayoutContext";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import { useTheme } from "@emotion/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SvgIcon from "@mui/material/SvgIcon";
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const { mode, setMode, systemMode } = useColorScheme();
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down("sm")
+  );
   const effectiveMode =
     mode === "system" ? systemMode : mode;
 
@@ -63,6 +71,7 @@ export default function AppBarContent() {
       <Box
         display="flex"
         alignItems="center"
+        gap={2}
         // sx={{ pointerEvents: "auto" }}
       >
         {!isDrawerOpen && (
@@ -77,14 +86,45 @@ export default function AppBarContent() {
               onClick={() => setIsDrawerOpen(true)}
               sx={{ cursor: "e-resize" }}
             >
-              <ViewSidebarOutlinedIcon
-                sx={{ transform: "rotate(180deg)" }}
-              />
+              {isMobile ? (
+                <SvgIcon>
+                  <svg
+                    width="64px"
+                    height="64px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      id="SVGRepo_bgCarrier"
+                      strokeWidth={0}
+                    ></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M4 6H20M4 12H14M4 18H9"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </g>
+                  </svg>
+                </SvgIcon>
+              ) : (
+                <ViewSidebarOutlinedIcon
+                  sx={{ transform: "rotate(180deg)" }}
+                />
+              )}
             </IconButton>
           </Tooltip>
         )}
 
-        {!isDrawerOpen && (
+        {!isMobile && !isDrawerOpen && (
           <Tooltip
             title="New chat"
             placement="bottom"
