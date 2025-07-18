@@ -5,10 +5,15 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { useLayout } from "./LayoutContext";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import CloseIcon from '@mui/icons-material/Close';
 export default function AppDrawerContent() {
-  const { setIsDrawerOpen } = useLayout();
   const theme = useTheme();
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down("sm")
+  );
+  const { setIsDrawerOpen } = useLayout();
 
   return (
     <Box
@@ -35,7 +40,7 @@ export default function AppDrawerContent() {
           onClick={() => setIsDrawerOpen(false)}
           sx={{ cursor: "e-resize" }}
         >
-          <ChevronLeftIcon />
+          {isMobile ? <CloseIcon /> : <ChevronLeftIcon />}
         </IconButton>
       </Tooltip>
     </Box>
