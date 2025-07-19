@@ -61,6 +61,7 @@ export default function AppBarContent() {
   return (
     <Toolbar
       sx={{
+        containerType: "inline-size",
         display: "flex",
         justifyContent: "space-between",
         "& > *": {
@@ -71,10 +72,18 @@ export default function AppBarContent() {
       <Box
         display="flex"
         alignItems="center"
+        // justifyContent="center"
         gap={2}
+        sx={(theme) => ({
+          [theme.breakpoints.down("sm")]: {
+            flexGrow: 1,
+            display: "flex",
+          },
+        })}
+
         // sx={{ pointerEvents: "auto" }}
       >
-        {!isDrawerOpen && (
+        {(!isDrawerOpen || isMobile) && (
           <Tooltip
             title="Open sidebar"
             placement="auto"
@@ -141,8 +150,12 @@ export default function AppBarContent() {
         )}
         <Typography
           variant="h6"
-          component="div"
-          // sx={{ flexGrow: 1 }}
+          sx={(theme) => ({
+            [theme.breakpoints.down("sm")]: {
+              marginLeft: "auto",
+              marginRight: "auto",
+            },
+          })}
         >
           Fira
         </Typography>
