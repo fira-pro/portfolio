@@ -75,7 +75,12 @@ export default function ChatWindow() {
       {/* Display bottom fixed suggestions once the chat is started
       and FAB absolutely positioned to scroll to bottom
        */}
-      <Slide direction="down" in={!isJustStarted}>
+      <Slide
+        direction="down"
+        in={!isJustStarted}
+        mountOnEnter
+        unmountOnExit
+      >
         <Container
           maxWidth="sm"
           sx={{
