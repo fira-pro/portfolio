@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import LoadingIcon from "../ui/icons/LoadingIcon";
+import CheckMarkIcon from "../ui/icons/CheckMarkIcon";
+import WritingHandIcon from "../ui/icons/WritingHandIcon";
 const Suggestions = ({ scrollToSection = () => {} }) => {
   const {
     sections,
@@ -18,6 +21,13 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
     } else {
       startStreaming(sectionId);
     }
+  };
+
+  const getEndIcon = (status) => {
+    if (status === "streaming") return <WritingHandIcon />;
+    if (status === "loading") return <LoadingIcon />;
+    if (status === "completed") return <CheckMarkIcon />;
+    return null;
   };
 
   const suggestionsBoxStyles = isJustStarted
@@ -56,38 +66,38 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
         useFlexGap
         justifyContent="center"
       >
-        {sections.map((section) => (
-          <Button
-            key={section.id}
-            onClick={() =>
-              handleScrollToOrStream(section.id)
-            }
-            disabled={currentStreamingId !== null}
-            variant={
-              section.status === "completed" ||
-              section.status === "streaming"
-                ? "outlined"
-                : "contained"
-            }
-            sx={{
-              borderColor:
-                section.status === "completed"
-                  ? "success.light"
-                  : section.status === "loading" ||
-                    section.status === "streaming"
-                  ? "info.light"
-                  : "grey.300",
-              px: 2,
-              py: 1,
-              textTransform: "capitalize",
-            }}
-          >
-            {section.title}
-            {section.status === "loading" && " ⏳"}
-            {section.status === "streaming" && " ✍️"}
-            {section.status === "completed" && " ✅"}
-          </Button>
-        ))}
+        {sections.map((section) => {
+          return (
+            <Button
+              endIcon={getEndIcon(section.status)}
+              key={section.id}
+              onClick={() =>
+                handleScrollToOrStream(section.id)
+              }
+              disabled={currentStreamingId !== null}
+              variant={
+                section.status === "completed" ||
+                section.status === "streaming"
+                  ? "outlined"
+                  : "contained"
+              }
+              sx={{
+                borderColor:
+                  section.status === "completed"
+                    ? "success.light"
+                    : section.status === "loading" ||
+                      section.status === "streaming"
+                    ? "info.light"
+                    : "grey.300",
+                px: 2,
+                py: 1,
+                textTransform: "capitalize",
+              }}
+            >
+              {section.title}
+            </Button>
+          );
+        })}
       </Stack>
       {!isJustStarted && (
         <Typography
