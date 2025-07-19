@@ -1,4 +1,3 @@
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -6,8 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { useLayout } from "./LayoutContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
+import LeftSidebarIcon from "../ui/icons/LeftSidebarIcon";
 export default function AppDrawerContent() {
   const theme = useTheme();
   const isMobile = useMediaQuery(
@@ -40,7 +39,7 @@ export default function AppDrawerContent() {
           onClick={() => setIsDrawerOpen(false)}
           sx={{ cursor: "e-resize" }}
         >
-          {isMobile ? <CloseIcon /> : <ChevronLeftIcon />}
+          {isMobile ? <CloseIcon /> : <LeftSidebarIcon />}
         </IconButton>
       </Tooltip>
     </Box>

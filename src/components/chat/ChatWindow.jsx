@@ -9,6 +9,7 @@ import IntroHeader from "./IntroHeader";
 import Suggestions from "./Suggestions";
 import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
+import ArrowDownIcon from "../ui/icons/ArrowDownIcon";
 export default function ChatWindow() {
   const {
     streamedSections,
@@ -101,7 +102,7 @@ export default function ChatWindow() {
               }}
               aria-label="Scroll to bottom"
             >
-              <ArrowDownwardIcon />
+              <ArrowDownIcon />
             </Fab>
           </Zoom>
           <Suggestions scrollToSection={scrollToSection} />

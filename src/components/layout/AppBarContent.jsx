@@ -1,5 +1,3 @@
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,6 +13,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import LeftSidebarIcon from "../ui/icons/LeftSidebarIcon";
 import NewChatIcon from "../ui/icons/NewChatIcon";
 import OpenSideBarMobileIcon from "../ui/icons/OpenSideBarMobileIcon";
+import LightModeIcon from "../ui/icons/LightModeIcon";
+import DarkModeIcon from "../ui/icons/DarkModeIcon";
 
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
