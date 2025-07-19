@@ -1,7 +1,5 @@
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import ViewSidebarOutlinedIcon from "@mui/icons-material/ViewSidebarOutlined";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -14,7 +12,10 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import SvgIcon from "@mui/material/SvgIcon";
+import LeftSidebarIcon from "../ui/icons/LeftSidebarIcon";
+import NewChatIcon from "../ui/icons/NewChatIcon";
+import OpenSideBarMobileIcon from "../ui/icons/OpenSideBarMobileIcon";
+
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const { mode, setMode, systemMode } = useColorScheme();
@@ -90,44 +91,15 @@ export default function AppBarContent() {
             disableInteractive
           >
             <IconButton
-              size="large"
+              size="medium"
               aria-label="open sidebar"
               onClick={() => setIsDrawerOpen(true)}
               sx={{ cursor: "e-resize" }}
             >
               {isMobile ? (
-                <SvgIcon>
-                  <svg
-                    width="64px"
-                    height="64px"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      id="SVGRepo_bgCarrier"
-                      strokeWidth={0}
-                    ></g>
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        d="M4 6H20M4 12H14M4 18H9"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                    </g>
-                  </svg>
-                </SvgIcon>
+                <OpenSideBarMobileIcon />
               ) : (
-                <ViewSidebarOutlinedIcon
-                  sx={{ transform: "rotate(180deg)" }}
-                />
+                <LeftSidebarIcon />
               )}
             </IconButton>
           </Tooltip>
@@ -140,11 +112,11 @@ export default function AppBarContent() {
             disableInteractive
           >
             <IconButton
-              size="large"
+              size="medium"
               aria-label="new chat"
               // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
             >
-              <EditNoteIcon />
+              <NewChatIcon />
             </IconButton>
           </Tooltip>
         )}
