@@ -6,7 +6,13 @@ import Stack from "@mui/material/Stack";
 import LoadingIcon from "../ui/icons/LoadingIcon";
 import CheckMarkIcon from "../ui/icons/CheckMarkIcon";
 import WritingHandIcon from "../ui/icons/WritingHandIcon";
+import { useTheme } from "@emotion/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 const Suggestions = ({ scrollToSection = () => {} }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down("sm")
+  );
   const {
     sections,
     startStreaming,
@@ -69,6 +75,7 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
         {sections.map((section) => {
           return (
             <Button
+              size={isMobile ? "small" : "medium"}
               endIcon={getEndIcon(section.status)}
               key={section.id}
               onClick={() =>
