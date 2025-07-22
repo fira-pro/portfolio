@@ -17,7 +17,7 @@ export default function ChatBubble({
         textAlign: type === "assistant" ? "left" : "right",
         bgcolor:
           type === "user"
-            ? "background.paper"
+            ? "divider"
             : "background.default",
         borderRadius: 100,
         overflowWrap: "break-word", // Ensures text wraps
