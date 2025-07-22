@@ -53,7 +53,7 @@ const usePortfolioStore = create((set, get) => ({
 
     // Simulate loading delay
     await new Promise((resolve) =>
-      setTimeout(resolve, streamSpeed * 10)
+      setTimeout(resolve, streamSpeed * 100)
     );
 
     // Start streaming
