@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { portfolioSections } from "./data/sections";
 import { streamSpeed } from "./data/constants";
 
-const usePortfolioStore = create((set, get) => ({
+const usePortfolioStore = create((set, get, store) => ({
   // Portfolio sections data
   sections: portfolioSections.map((section) => ({
     ...section,
@@ -69,21 +69,28 @@ const usePortfolioStore = create((set, get) => ({
     await get().streamText(sectionId, section.content);
 
     // Mark as complete
-    set((state) => ({
-      sections: state.sections.map((s) =>
-        s.id === sectionId
-          ? { ...s, status: "completed" }
-          : s
-      ),
-      streamedContent: {
-        ...state.streamedContent,
-        [sectionId]: {
-          ...state.streamedContent[sectionId],
-          isComplete: true,
+    // - fix status being completed when streaming is interrupted
+    const { currentStreamingId } = get();
+    if (currentStreamingId === sectionId) {
+      set((state) => ({
+        sections: state.sections.map((s) =>
+          s.id === sectionId
+            ? {
+                ...s,
+                status: "completed",
+              }
+            : s
+        ),
+        streamedContent: {
+          ...state.streamedContent,
+          [sectionId]: {
+            ...state.streamedContent[sectionId],
+            isComplete: true,
+          },
         },
-      },
-      currentStreamingId: null,
-    }));
+        currentStreamingId: null,
+      }));
+    }
   },
 
   streamText: async (sectionId, text) => {
@@ -123,6 +130,9 @@ const usePortfolioStore = create((set, get) => ({
         });
       }
     }
+  },
+  resetState: () => {
+    set(store.getInitialState());
   },
 }));
 
