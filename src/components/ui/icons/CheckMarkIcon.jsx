@@ -6,7 +6,7 @@ export default function CheckMarkIcon() {
         xmlns="http://www.w3.org/2000/svg"
         width="64"
         height="64"
-        ariaHidden="true"
+        aria-hidden="true"
         className="iconify iconify--twemoji"
         viewBox="0 0 36 36"
       >
