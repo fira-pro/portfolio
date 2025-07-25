@@ -15,10 +15,13 @@ import NewChatIcon from "../ui/icons/NewChatIcon";
 import OpenSideBarMobileIcon from "../ui/icons/OpenSideBarMobileIcon";
 import LightModeIcon from "../ui/icons/LightModeIcon";
 import DarkModeIcon from "../ui/icons/DarkModeIcon";
+import usePortfolioStore from "src/store";
 
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const { mode, setMode, systemMode } = useColorScheme();
+  const { resetState } = usePortfolioStore();
+
   const theme = useTheme();
 
   const isMobile = useMediaQuery(
@@ -114,7 +117,7 @@ export default function AppBarContent() {
             <IconButton
               size="medium"
               aria-label="new chat"
-              // onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              onClick={resetState}
             >
               <NewChatIcon />
             </IconButton>
