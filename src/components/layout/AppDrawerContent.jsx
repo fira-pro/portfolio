@@ -9,9 +9,16 @@ import LeftSidebarIcon from "../ui/icons/LeftSidebarIcon";
 import Button from "@mui/material/Button";
 import NewChatIcon from "../ui/icons/NewChatIcon";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import FiraLogoIcon from "../ui/icons/FiraLogoIcon";
 import usePortfolioStore from "src/store";
+import CodeIcon from "@mui/icons-material/Code";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import {
+  contactInfo,
+  projectSourceLink,
+  resumeLink,
+} from "src/data/constants";
+
 export default function AppDrawerContent() {
   const theme = useTheme();
   const isMobile = useMediaQuery(
@@ -26,6 +33,7 @@ export default function AppDrawerContent() {
         display: "flex",
         flexDirection: "column",
         width: "100%",
+        height: "100%",
         justifyContent: "flex-start",
       }}
     >
@@ -75,14 +83,67 @@ export default function AppDrawerContent() {
       >
         <Button
           startIcon={<NewChatIcon />}
-          onClick={resetState}
+          onClick={() => {
+            if (isMobile) {
+              setIsDrawerOpen(false);
+            }
+            resetState();
+          }}
         >
           New Chat
         </Button>
-        <Button startIcon={<DownloadOutlinedIcon />}>
-          Download PDF
+        <Button
+          startIcon={<DescriptionOutlinedIcon />}
+          href={resumeLink}
+          target="_blank"
+        >
+          Résumé
         </Button>
       </ButtonGroup>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
+        <ButtonGroup
+          variant="text"
+          orientation="vertical"
+          aria-label="Contact Info"
+          sx={{
+            py: 1,
+            px: 2,
+            "& .MuiButton-root": {
+              justifyContent: "flex-start",
+              border: "none",
+              color: "primary.light",
+            },
+          }}
+        >
+          {contactInfo.map((contact) => (
+            <Button
+              startIcon={<contact.icon />}
+              href={contact.value}
+              target="_blank"
+            >
+              {contact.name}
+            </Button>
+          ))}
+        </ButtonGroup>
+        <Button
+          startIcon={<CodeIcon />}
+          href={projectSourceLink}
+          target="_blank"
+          sx={{
+            my: 2,
+            mx: 2,
+          }}
+        >
+          Source Code
+        </Button>
+      </Box>
     </Box>
   );
 }
