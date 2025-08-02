@@ -6,6 +6,12 @@ export const drawerWidth = 245;
 export const streamSpeed = 10;
 export const delayBeforeScroll = 150; // delay before trying to scroll to a newly added chat
 
+export const userName = {
+  firstName: "Firaol",
+  lastName: "Debebe",
+  nickName: "Fira",
+};
+
 export const projectSourceLink =
   "https://github.com/fira-pro/portfolio"; // Source code link for the project
 
