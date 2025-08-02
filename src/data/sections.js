@@ -1,3 +1,5 @@
+import { projectSourceLink } from "./constants";
+
 export const portfolioSections = [
   {
     id: "about-me",
@@ -60,7 +62,7 @@ Here are a few things I’ve built - some out of curiosity, some to solve real p
 - **[fira.et](https://fira.et)**  
   You're on it! My portfolio site, styled like a chat interface with smooth animations and section-based streaming.  
   Built using \`React\`, \`MUI\`, \`Zustand\`, and \`react-markdown\`.  
-  The project is open source on [GitHub](https://github.com/your-username/fira.et).
+  The project is open source on [GitHub](${projectSourceLink}).
 
 - **Custom File Uploader (Java/Kotlin)**  
   A desktop tool for uploading files with automatic metadata generation, organized structure, and optional CLI interface.  
@@ -85,7 +87,7 @@ Here are a few things I’ve built - some out of curiosity, some to solve real p
     content: `
 ### 🧠 Experience
 
-> In 2021, while exploring how **Telebirr** processes transactions, I discovered a _logical bug_ in their **price validation** that allowed near-free purchases for some services.  
+> In 2021, while exploring how **[Telebirr](https://www.ethiotelecom.et/telebirr/)** processes transactions, I discovered a _logical bug_ in their **price validation** that allowed near-free purchases for some services.  
 >  
 > I **responsibly reported** the issue to Ethiotelecom, and they fixed it quickly.
 
