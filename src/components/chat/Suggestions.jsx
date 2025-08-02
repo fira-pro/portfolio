@@ -8,6 +8,7 @@ import CheckMarkIcon from "../ui/icons/CheckMarkIcon";
 import WritingHandIcon from "../ui/icons/WritingHandIcon";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { username } from "src/data/constants";
 const Suggestions = ({ scrollToSection = () => {} }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(
@@ -113,7 +114,8 @@ const Suggestions = ({ scrollToSection = () => {} }) => {
           align="center"
           py={1}
         >
-          Fira can develop amazing softwares. Check{" "}
+          {username.nickName} can develop amazing softwares.
+          Check{" "}
           <span
             onClick={() =>
               handleScrollToOrStream("contact")

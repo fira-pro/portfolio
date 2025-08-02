@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import WavingHandIcon from "../ui/icons/WavingHandIcon";
+import { username } from "src/data/constants";
 export default function IntroHeader() {
   return (
     <Box
@@ -39,7 +40,7 @@ export default function IntroHeader() {
         >
           <WavingHandIcon fontSize="20" />
         </Box>
-        I'm Firaol
+        I'm {username.firstName}
       </Typography>
       <Typography
         variant="h6"

@@ -16,6 +16,7 @@ import OpenSideBarMobileIcon from "../ui/icons/OpenSideBarMobileIcon";
 import LightModeIcon from "../ui/icons/LightModeIcon";
 import DarkModeIcon from "../ui/icons/DarkModeIcon";
 import usePortfolioStore from "src/store";
+import { username } from "src/data/constants";
 
 export default function AppBarContent() {
   const { isDrawerOpen, setIsDrawerOpen } = useLayout();
@@ -132,7 +133,7 @@ export default function AppBarContent() {
             },
           })}
         >
-          Fira
+          {username.nickName}
         </Typography>
       </Box>
 
