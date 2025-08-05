@@ -102,7 +102,7 @@ This experience sparked my interest in **security research**, **reverse engineer
 
 Whether you want to **collaborate**, have a question, or just want to say hi - I'm always open to chatting!
 
-- 📧 **Email**: [firaoldebebe7@gmail.com](mailto:firaoldebebe7@gmail.com)
+- 📧 **Email**: [hi@fira.et](mailto:hi@fira.et)
 - 💬 **Telegram**: [@fira_pro](https://t.me/fira_pro)
 - 💼 **LinkedIn**: [linkedin.com/in/firaol-debebe](https://linkedin.com/in/firaol-debebe)
 - 🛠 **GitHub**: [github.com/fira-pro](https://github.com/fira-pro)

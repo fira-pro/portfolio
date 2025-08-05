@@ -21,7 +21,7 @@ export const resumeLink =
 export const contactInfo = [
   {
     name: "E-mail",
-    value: "mailto:firaoldebebe7@gmail.com",
+    value: "mailto:hi@fira.et",
     icon: EmailOutlinedIcon,
   },
   {

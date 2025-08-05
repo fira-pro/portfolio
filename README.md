@@ -118,7 +118,7 @@ If you encounter any bugs or want to suggest a new feature, feel free to open an
 
 Have questions, feedback, or just want to say hi? Feel free to reach out:
 
-- 📧 Email: [firaoldebebe7@gmail.com](mailto:firaoldebebe7@gmail.com)
+- 📧 Email: [hi@fira.et](mailto:hi@fira.et)
 - 📱 Telegram: [@fira_pro](https://t.me/fira_pro)
 - 💼 LinkedIn: [linkedin.com/in/firaol-debebe](https://linkedin.com/in/firaol-debebe)
 - 💻 GitHub: [github.com/fira-pro](https://github.com/fira-pro)
